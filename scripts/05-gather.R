@@ -49,9 +49,11 @@ vroom_write( x = wide_ann.df,
 # plot qc
 qcpanel.p <- ggplot( data = wide_ann.df,
                      mapping =  aes( x = gene2flank_ratio * 2 ) ) +
-  geom_histogram( binwidth = 0.1, fill = "cornflowerblue", color = "white" ) +
-  scale_x_continuous( limits = c( 0, 4 ) ) +
-  theme_classic( base_size = 30 ) +
-  facet_wrap( ~pop )
+  geom_histogram( binwidth = 0.3, fill = "cornflowerblue", color = "white" ) +
+  scale_x_continuous( limits = c( 0, 2.5 ),
+breaks = seq( 0, 2.5, by = 0.5 ),
+labels = c( "0", ".5", "1", "1.5", "2", "2.5" ) ) +
+  theme_classic( base_size = 20 ) +
+  facet_wrap( ~pop, scales = "free" )
 
 ggsave( plot = qcpanel.p, filename = "qcpanel.png", width = 15, height = 15 )
