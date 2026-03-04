@@ -1,0 +1,34 @@
+##FileDate=20190503
+##ENA_FILE_PATH=path to ENA file on ENA ftp site
+##MD5=md5sum of file
+##RUN_ID=SRA/ERA run accession
+##STUDY_ID=SRA/ERA study accession
+##STUDY_NAME=Name of study
+##CENTER_NAME=Submission centre name
+##SUBMISSION_ID=SRA/ERA submission accession
+##SUBMISSION_DATE=Date sequence submitted, YYYY-MM-DD
+##SAMPLE_ID=SRA/ERA sample accession
+##SAMPLE_NAME=Sample name
+##POPULATION=Sample population. Further information may be available with the data collection.
+##EXPERIMENT_ID=Experiment accession
+##INSTRUMENT_PLATFORM=Type of sequencing machine
+##INSTRUMENT_MODEL=Model of sequencing machine
+##LIBRARY_NAME=Library name
+##RUN_NAME=Name of machine run
+##INSERT_SIZE=Submitter specifed insert size/paired nominal length
+##LIBRARY_LAYOUT=Library layout, this can be either PAIRED or SINGLE
+##PAIRED_FASTQ=Name of mate pair file if exists (Runs with failed mates will have a library layout of PAIRED but no paired fastq file)
+##READ_COUNT=Read count for the file
+##BASE_COUNT=Basepair count for the file
+##ANALYSIS_GROUP=Analysis group is used to identify groups, or sets, of data. Further information may be available with the data collection.
+#ENA_FILE_PATH	MD5SUM	RUN_ID	STUDY_ID	STUDY_NAME	CENTER_NAME	SUBMISSION_ID	SUBMISSION_DATE	SAMPLE_ID	SAMPLE_NAME	POPULATION	EXPERIMENT_ID	INSTRUMENT_PLATFORM	INSTRUMENT_MODEL	LIBRARY_NAME	RUN_NAME	INSERT_SIZE	LIBRARY_LAYOUT	PAIRED_FASTQ	READ_COUNT	BASE_COUNT	ANALYSIS_GROUP
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239480/NA12718.final.cram	923ca8ff7d4cd65fddd28e855e5f173d	ERR3239480	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000632	NA12718	CEU	ERX3266855	ILLUMINA	Illumina NovaSeq 6000	NA12718	ena-RUN-NYGC-22-03-2019-12:30:23:667-205	450	PAIRED		753247448	112987117200	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239481/NA12748.final.cram	52bd4d12eaf896daf88990b98a911c27	ERR3239481	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000633	NA12748	CEU	ERX3266856	ILLUMINA	Illumina NovaSeq 6000	NA12748	ena-RUN-NYGC-22-03-2019-12:30:23:667-206	450	PAIRED		763302282	114495342300	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239482/NA12775.final.cram	619a0f7c3ca340949c11bb75ec5bbf71	ERR3239482	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000634	NA12775	CEU	ERX3266857	ILLUMINA	Illumina NovaSeq 6000	NA12775	ena-RUN-NYGC-22-03-2019-12:30:23:667-207	450	PAIRED		749854730	112478209500	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239483/NA12777.final.cram	2c27484e2b978a819a98db66af7b3863	ERR3239483	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000635	NA12777	CEU	ERX3266858	ILLUMINA	Illumina NovaSeq 6000	NA12777	ena-RUN-NYGC-22-03-2019-12:30:23:667-208	450	PAIRED		753668570	113050285500	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239484/NA12778.final.cram	b03ae320c1a3b13c750d23d28a8dbc13	ERR3239484	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000636	NA12778	CEU	ERX3266859	ILLUMINA	Illumina NovaSeq 6000	NA12778	ena-RUN-NYGC-22-03-2019-12:30:23:667-209	450	PAIRED		696060544	104409081600	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239485/NA12827.final.cram	bf577953d709c5e2ee016aa51e9f70fb	ERR3239485	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000637	NA12827	CEU	ERX3266860	ILLUMINA	Illumina NovaSeq 6000	NA12827	ena-RUN-NYGC-22-03-2019-12:30:23:667-210	450	PAIRED		1071166662	160674999300	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239486/NA12829.final.cram	ed7e00eaefe33280d64ccb5b1394ac04	ERR3239486	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000638	NA12829	CEU	ERX3266861	ILLUMINA	Illumina NovaSeq 6000	NA12829	ena-RUN-NYGC-22-03-2019-12:30:23:667-211	450	PAIRED		1166844742	175026711300	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239487/NA12842.final.cram	17471b1faa71859657f4d7ec117b3654	ERR3239487	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000640	NA12842	CEU	ERX3266862	ILLUMINA	Illumina NovaSeq 6000	NA12842	ena-RUN-NYGC-22-03-2019-12:30:23:667-212	450	PAIRED		729859386	109478907900	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239488/NA12843.final.cram	091e5e1a7526f35aa7e235529dc5245a	ERR3239488	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000641	NA12843	CEU	ERX3266863	ILLUMINA	Illumina NovaSeq 6000	NA12843	ena-RUN-NYGC-22-03-2019-12:30:23:667-213	450	PAIRED		695697066	104354559900	high_cov
+ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239489/NA12889.final.cram	8a296693b8cc751be93f2f2ead749dd0	ERR3239489	ERP114329	30X whole genome sequencing coverage of the 2504 Phase 3 1000 Genome samples.	NYGC	ERA1783081	2019-03-22 00:00	SRS000642	NA12889	CEU	ERX3266864	ILLUMINA	Illumina NovaSeq 6000	NA12889	ena-RUN-NYGC-22-03-2019-12:30:23:667-214	450	PAIRED		929340946	139401141900	high_cov
