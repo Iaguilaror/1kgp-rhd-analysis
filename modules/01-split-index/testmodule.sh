@@ -12,5 +12,5 @@ mkdir -p test/results
 
 # run nf script
 nextflow run testmodule.nf \
-    --sample_list "test/data/10samples_only.index" \
+    --sample_list "test/data/1000G_2504_high_coverage.sequence.index" \
 && echo "[>>>] Module Test Successful" 

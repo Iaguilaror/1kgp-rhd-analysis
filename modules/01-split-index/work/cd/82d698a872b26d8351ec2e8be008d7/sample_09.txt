@@ -1,1 +1,0 @@
-ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239489/NA12889.final.cram

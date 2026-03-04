@@ -6,17 +6,15 @@ process dwbam {
 
     publishDir "${params.results_dir}/02-${task.process.replaceAll(/.*:/, '')}/", mode:"symlink"
 
-    tag "$vcf"
-
     input:
-      tuple path(link), path(script)
+      path( materials )
 
     output:
         path "*", emit: results_dwbam
 
     script:
     """
-	ls > tmp
+	bash *.sh "${params.chr}" "${params.start}" "${params.end}" \$(cat *.txt) *.fa
     """
 
 }

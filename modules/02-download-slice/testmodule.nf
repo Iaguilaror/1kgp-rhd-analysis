@@ -1,4 +1,4 @@
-/* Inititate DSL2 */
+/* Initiate DSL2 */
 nextflow.enable.dsl=2
 
 /* load functions for testing env */
@@ -16,9 +16,17 @@ include { DWBAM }    from './main.nf'
 //	.view( )
         .set { link_channel }
 
+Channel
+        .fromPath( "${params.genome}" )
+//	.view( )
+        .set { genome_channel }
+
 /* declare scripts channel for testing */
-NONE
+dwbam_script = Channel.fromPath( "scripts/02-a-download_slice.sh" )
+
+// gather all
+all_materials = link_channel.combine(genome_channel).combine(dwbam_script)
 
 workflow {
-  DWBAM( link_channel )
+  DWBAM( all_materials )
 }
