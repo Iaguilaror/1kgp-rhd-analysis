@@ -1,0 +1,2 @@
+2026-03-03 17:53:55	1.9s	drunk_laplace	OK	c66dcb145d4aa11e6a96d81146bafa42	395fdb34-de0d-4cc6-80fa-53fadc023256	nextflow run testmodule.nf --sample_list test/data/1000G_2504_high_coverage.sequence.index
+2026-03-03 18:22:11	1.2s	elegant_goldberg	OK	c66dcb145d4aa11e6a96d81146bafa42	77a98fd2-ad68-4ba2-8783-9b155a54cfaa	nextflow run testmodule.nf --sample_list test/data/10samples_only.index

@@ -12,6 +12,5 @@ mkdir -p test/results
 
 # run nf script
 nextflow run testmodule.nf \
-    --start "25242393" \
-    --end "25390445" \
+    --sample_list "test/data/10samples_only.index" \
 && echo "[>>>] Module Test Successful" 
