@@ -5,9 +5,9 @@ pacman::p_load( "vroom", "dplyr", "tidyr", "ggplot2", "scales" )
 args <- commandArgs( trailingOnly = TRUE )
 
 # for debug only
-args[ 1 ] <- "all_covratio.tsv" # cnv_channel
-args[ 2 ] <- "1kgp_RHD_500kb_upanddown_window_gts_unrelated.tsv.gz" # snv_channel
-args[ 3 ] <- "1kgp_samplepops.tsv" # ref_channel
+# args[ 1 ] <- "all_covratio.tsv" # cnv_channel
+# args[ 2 ] <- "1kgp_RHD_500kb_upanddown_window_gts_unrelated.tsv.gz" # snv_channel
+# args[ 3 ] <- "1kgp_samplepops.tsv" # ref_channel
 
 cnv_file <- args[ 1 ]
 snv_file <- args[ 2 ]
@@ -127,12 +127,23 @@ all_cnvsnv.df <- cnv_use.df %>%
              by = "sample" ) %>% 
   left_join( x = .,
              y = long_mk2.df,
-             by = "sample" )
+             by = "sample" ) %>% 
+  as_tibble( )
+
+## lets measure accuracy
+str( all_cnvsnv.df )
+
+# Calculate accuracy for both markers
+accuracy.df <- all_cnvsnv.df %>%
+  mutate( cnv_code = as.character( cnv_tag ) %>%  as.numeric( ) ) %>% 
+  mutate( chr1_25235176_G_A_n = as.numeric( chr1_25235176_G_A ) ,
+          chr1_25257119_C_G_n = as.numeric( chr1_25235176_G_A ) )
 
 # summarise ----
 mk1_table.df <- all_cnvsnv.df %>% 
   group_by( `Superpopulation code`, cnv_tag, chr1_25235176_G_A ) %>% 
-  summarise( n = n( ) )
+  summarise( n = n( ) ) %>% 
+  ungroup(  )
 
 mk2_table.df <- all_cnvsnv.df %>% 
   group_by( `Superpopulation code`, cnv_tag, chr1_25257119_C_G ) %>% 
@@ -150,6 +161,56 @@ ggplot( data = mk1_table.df,
                        high = "tomato" ) +
   theme_classic( ) +
   facet_wrap( ~`Superpopulation code`, scales = "free" )
+
+#
+get_pop_accuracy <- function(df, marker_col, the_pop) {
+  
+  toplot.tmp <- df %>%
+    filter( `Superpopulation code` == the_pop ) %>% 
+    # 1. Ensure we calculate proportions within each Population AND CNV Tag
+    group_by(`Superpopulation code`, cnv_tag) %>%
+    mutate(
+      accuracy_pct = (n / sum(n)) * 100
+    ) %>%
+    ungroup() %>%
+    # 2. Reshape to the grid format (SNP as rows, CNV Tag as columns)
+    # We keep Superpopulation code to see the results per group
+    select(`Superpopulation code`, !!sym(marker_col), cnv_tag, accuracy_pct) %>%
+    rename( marker = 2 )
+  # pivot_wider(
+  #   names_from = cnv_tag, 
+  #   values_from = accuracy_pct, 
+  #   values_fill = 0
+  # ) %>%
+  # # 3. Sort for readability
+  # arrange(`Superpopulation code`, !!sym(marker_col))
+  
+  # plot
+  the_plot <- ggplot( data = toplot.tmp,
+                      mapping = aes( x = cnv_tag,
+                                     y = marker,
+                                     fill = accuracy_pct,
+                                     label = round( accuracy_pct,
+                                                    digits = 1 ) )  ) +
+    geom_tile( color= "white", size = 3 ) +
+    geom_text( size = 20 ) +
+    scale_fill_gradient( low = "white", high = "limegreen"  ) +
+    theme_classic( base_size = 20 ) +
+    theme( legend.position = "none",
+           plot.title = element_text( hjust = 0.5 ) )
+  
+  ggsave( plot = the_plot,
+          filename = paste0( marker_col, "-", the_pop, "_acc", ".svg" ),
+          width = 7, height = 7  )
+  
+  return( the_plot )
+  
+}
+
+# get_pop_accuracy( mk1_table.df, "chr1_25235176_G_A", "AMR" )
+
+# print(res_marker1)
+
 
 # lets do a function to chose the marker column, and the superpop
 # the_data <- all_cnvsnv.df
@@ -172,7 +233,7 @@ plot_table.f <- function( the_data, the_pop, the_marker ){
                                      fill = n,
                                      label = n ) ) +
     geom_tile( color = "white", size = 3 ) +
-    geom_text( size = 10 ) +
+    geom_text( size = 20 ) +
     scale_fill_gradient( low = "white",
                          high = "tomato" ) +
     labs( title = paste( the_pop, the_marker, sep = "  -  " ) ) +
@@ -181,7 +242,7 @@ plot_table.f <- function( the_data, the_pop, the_marker ){
     theme_classic( base_size = 15 ) +
     theme( legend.position = "none",
            plot.title = element_text( hjust = 0.5 ) )
-
+  
   ggsave( plot = the_plot,
           filename = paste0( the_marker, "-", the_pop, ".svg" ),
           width = 7, height = 7  )
@@ -193,7 +254,7 @@ plot_table.f <- function( the_data, the_pop, the_marker ){
 for ( pop_inturn in all_cnvsnv.df$`Superpopulation code` %>% unique( ) ) {
   
   message( "[>..] plotting ", pop_inturn )
-
+  
   plot_table.f( the_data = all_cnvsnv.df,
                 the_pop = pop_inturn,
                 the_marker = "chr1_25235176_G_A" )
@@ -201,5 +262,8 @@ for ( pop_inturn in all_cnvsnv.df$`Superpopulation code` %>% unique( ) ) {
   plot_table.f( the_data = all_cnvsnv.df,
                 the_pop = pop_inturn,
                 the_marker = "chr1_25257119_C_G" )
+  
+  get_pop_accuracy( mk1_table.df, "chr1_25235176_G_A", pop_inturn )
+  get_pop_accuracy( mk2_table.df, "chr1_25257119_C_G", pop_inturn )
   
 }
