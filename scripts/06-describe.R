@@ -240,7 +240,7 @@ plot_table.f <- function( the_data, the_pop, the_marker ){
     labs( title = paste( the_pop, the_marker, sep = "  -  " ) ) +
     scale_x_discrete( limits = c( "0", "1", "2" )   ) +
     scale_y_discrete( limits = c( "0", "1", "2" )   ) +
-    theme_classic( base_size = 15 ) +
+    theme_classic( base_size = 20 ) +
     theme( legend.position = "none",
            plot.title = element_text( hjust = 0.5 ) )
   
