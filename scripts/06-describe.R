@@ -195,7 +195,7 @@ get_pop_accuracy <- function(df, marker_col, the_pop) {
     geom_tile( color= "white", size = 3 ) +
     geom_text( size = 20 ) +
     scale_fill_gradient( low = "white", high = "limegreen"  ) +
-    labs( title = paste( the_pop, the_marker, sep = "  -  " ) ) +
+    labs( title = paste( the_pop, marker_col, sep = "  -  " ) ) +
     theme_classic( base_size = 20 ) +
     theme( legend.position = "none",
            plot.title = element_text( hjust = 0.5 ) )
